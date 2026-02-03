@@ -1,11 +1,12 @@
 import { Route, Routes } from "react-router";
+import { MainLayout } from "@/pages/main-layout/MainLayout.tsx";
 
 function App() {
 
   return (
     <>
       <Routes>
-        <Route path="/" element='main' />
+        <Route path="/" element={<MainLayout />} />
       </Routes>
     </>
   )

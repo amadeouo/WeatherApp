@@ -1,5 +1,5 @@
 import { buttonVariants } from "@/components/ui/button.tsx";
-import { cn } from "@/lib/utils.ts";
+import { cn } from "@/utils/lib/utils.ts";
 
 type Props = {
   label: string;

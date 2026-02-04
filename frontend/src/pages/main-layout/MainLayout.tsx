@@ -12,11 +12,11 @@ export const MainLayout = () => {
 
   useEffect(() => {
     getLocation()
-    if (itemFromLocalStorage.name) navigate(`/${itemFromLocalStorage.name}`)
-  }, [getLocation, navigate])
+    if (itemFromLocalStorage.name) navigate(`/${itemFromLocalStorage.name.toLowerCase()}`)
+  }, [getLocation, navigate, itemFromLocalStorage.name])
 
   return (
-    <div className='flex justify-center h-screen bg-[#03012DFF] px-20 py-4 text-white'>
+    <div className='flex justify-center h-full px-20 py-4 text-white'>
       <div className='w-full max-w-[1440px] '>
         <Header />
         <Hero />

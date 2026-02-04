@@ -1,19 +1,17 @@
-import type { TCurrentForecastParams } from "@/types/types.ts";
 import { useEffect } from "react";
 import { useWeatherStore } from "@/store/useWeatherStore.ts";
 import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 import { transformData } from "@/utils/transformData.ts";
 import { weatherAlt, weatherCodeLink } from "@/utils/weatherCode.ts";
-import {
-  CurrentWeatherOption
-} from "@/components/current-weather-option/CurrentWeatherOption.tsx";
+import { CurrentWeatherOption } from "@/components/current-weather/components/CurrentWeatherOption.tsx";
+import { paramsCurrent } from "@/pages/weather/Weather.tsx";
+import { useShallow } from "zustand/react/shallow";
 
-type Props = {
-  params: TCurrentForecastParams
-}
-
-export const CurrentWeather = ({ params }: Props) => {
-  const { getCurrentWeather, currentForecast } = useWeatherStore()
+export const CurrentWeather = () => {
+  const { getCurrentWeather, currentForecast } = useWeatherStore(useShallow(state => ({
+    getCurrentWeather: state.getCurrentWeather,
+    currentForecast: state.currentForecast,
+  })))
   const { itemFromLocalStorage } = useLocalStorageContext()
 
   const weatherOptions = [
@@ -36,14 +34,18 @@ export const CurrentWeather = ({ params }: Props) => {
   ]
 
   useEffect(() => {
-    getCurrentWeather(params)
-  }, [getCurrentWeather, params])
+    getCurrentWeather({
+      ...paramsCurrent,
+      latitude: itemFromLocalStorage.latitude,
+      longitude: itemFromLocalStorage.longitude
+    })
+  }, [getCurrentWeather, itemFromLocalStorage.latitude, itemFromLocalStorage.longitude])
 
   const weatherCodeLinkSrc = weatherCodeLink(currentForecast?.weather_code)
 
   return (
-    <section className='col-start-1 col-end-4 row-start-1 row-end-3'>
-      <div className='w-[800px] h-[286px] rounded-xl flex items-center px-4 justify-between bg-[url("/images/bg-today-large.svg")]'>
+    <section className='max-w-[800px] col-start-1 col-end-4 row-start-1 row-end-3'>
+      <div className='min-h-[286px] rounded-xl flex items-center px-4 justify-between bg-[url("/images/bg-today-large.svg")]'>
         <div className=''>
           <h3 className='text-4xl'>{itemFromLocalStorage.name}</h3>
           <p className='text-lg'>{transformData(currentForecast?.time)}</p>

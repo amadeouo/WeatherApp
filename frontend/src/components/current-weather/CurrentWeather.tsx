@@ -4,8 +4,8 @@ import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 import { transformData } from "@/utils/transformData.ts";
 import { weatherAlt, weatherCodeLink } from "@/utils/weatherCode.ts";
 import { CurrentWeatherOption } from "@/components/current-weather/components/CurrentWeatherOption.tsx";
-import { paramsCurrent } from "@/pages/weather/Weather.tsx";
 import { useShallow } from "zustand/react/shallow";
+import { paramsCurrent } from "@/utils/weatherParams.ts";
 
 export const CurrentWeather = () => {
   const { getCurrentWeather, currentForecast } = useWeatherStore(useShallow(state => ({
@@ -41,7 +41,6 @@ export const CurrentWeather = () => {
     })
   }, [getCurrentWeather, itemFromLocalStorage.latitude, itemFromLocalStorage.longitude])
 
-  console.log(currentForecast)
   const weatherCodeLinkSrc = weatherCodeLink(currentForecast?.weather_code)
 
   return (

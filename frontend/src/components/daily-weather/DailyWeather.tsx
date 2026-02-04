@@ -4,11 +4,11 @@ import {
   DailyWeatherOption
 } from "@/components/daily-weather/components/DailyWeatherOption.tsx";
 import { weatherAlt, weatherCodeLink } from "@/utils/weatherCode.ts";
-import { paramsDaily } from "@/pages/weather/Weather.tsx";
 import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 import {
   mapDailyToDays
 } from "@/components/daily-weather/utils/mapDailyToDays.ts";
+import { paramsDaily } from "@/utils/weatherParams.ts";
 
 export const DailyWeather = () => {
   const getDailyForecast = useWeatherStore(state => state.getDailyForecast)
@@ -25,8 +25,6 @@ export const DailyWeather = () => {
       longitude: itemFromLocalStorage.longitude,
     })
   }, [getDailyForecast, itemFromLocalStorage.latitude, itemFromLocalStorage.longitude])
-
-  console.log(dailyForecast)
 
   return (
     <section className='max-w-[800px] mt-6 col-start-1 col-end-4 row-start-3 row-end-4'>

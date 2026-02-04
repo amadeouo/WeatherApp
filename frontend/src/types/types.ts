@@ -39,8 +39,7 @@ export type THourlyForecastParams = {
   latitude: number
   longitude: number
   hourly: string[]
-  timezone: "auto",
-  forecast_days: number,
+  timezone: string,
 }
 
 export type TLocation = {

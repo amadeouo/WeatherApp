@@ -23,10 +23,10 @@ const WEATHER_CODE_CONFIG = new Map([
 ])
 
 export const weatherCodeLink = (weatherCode: number | undefined): string => {
-  if (!weatherCode) return ''
+  if (weatherCode === undefined) return ''
   let result: string = ''
   WEATHER_CODE_CONFIG.forEach((value, key) => {
-    if (value.find(item => item === weatherCode)) result = key
+    if (value.includes(weatherCode)) result = key
   })
   return result
 }

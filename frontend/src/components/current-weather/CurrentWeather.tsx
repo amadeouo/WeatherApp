@@ -41,6 +41,7 @@ export const CurrentWeather = () => {
     })
   }, [getCurrentWeather, itemFromLocalStorage.latitude, itemFromLocalStorage.longitude])
 
+  console.log(currentForecast)
   const weatherCodeLinkSrc = weatherCodeLink(currentForecast?.weather_code)
 
   return (
@@ -52,9 +53,9 @@ export const CurrentWeather = () => {
         </div>
         <div className='flex gap-7'>
           <img
-            className={`${!currentForecast?.weather_code ? "animate-spin" : ""} h-full`}
-            src={currentForecast?.weather_code ? weatherCodeLinkSrc : "/images/icon-loading.svg"}
-            alt={currentForecast?.weather_code ? weatherAlt(weatherCodeLinkSrc) : "loading"}
+            className={`${weatherCodeLinkSrc ? "" : "animate-spin"} h-[80px] w-[80px]`}
+            src={weatherCodeLinkSrc ? weatherCodeLinkSrc : "/images/icon-loading.svg"}
+            alt={weatherCodeLinkSrc ? weatherAlt(weatherCodeLinkSrc) : "loading"}
             width="80"
             height="80"
             loading="lazy"

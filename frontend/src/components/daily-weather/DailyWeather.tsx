@@ -26,8 +26,10 @@ export const DailyWeather = () => {
     })
   }, [getDailyForecast, itemFromLocalStorage.latitude, itemFromLocalStorage.longitude])
 
+  console.log(dailyForecast)
+
   return (
-    <section className='mt-6 col-start-1 col-end-4 row-start-3 row-end-4'>
+    <section className='max-w-[800px] mt-6 col-start-1 col-end-4 row-start-3 row-end-4'>
       <h3 className='mb-2'>Daily forecast</h3>
       <div className='flex justify-stretch gap-2'>
         {days.map((day) => {

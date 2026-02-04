@@ -17,7 +17,7 @@ export const DailyWeatherOption = ({ min, max, weekday, iconAlt, icon }: Props) 
         height="60"
         loading="lazy"
       />
-      <div className='flex justify-between'>
+      <div className='flex w-full justify-between pe-1.5 ps-1.5'>
         <p className=''>{min}°</p>
         <p className=''>{max}°</p>
       </div>

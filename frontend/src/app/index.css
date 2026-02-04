@@ -9,6 +9,10 @@
   font-display: swap;
 }
 
+body {
+  background-color: #03012DFF;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

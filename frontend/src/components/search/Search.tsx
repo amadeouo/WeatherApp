@@ -16,22 +16,24 @@ import { useSearchStore } from "@/store/useSearchStore.ts";
 import { useDebounce } from "use-debounce";
 import { useNavigate } from "react-router";
 import { useShallow } from "zustand/react/shallow";
+import { useLocalStorage } from "usehooks-ts";
+import type { TItems } from "@/types/types.ts";
 
 export const Search = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [query, setQuery] = useState<string>('')
   const navigate = useNavigate()
-  const { items, setItem, isLoading } = useSearchStore(useShallow(state => ({
+  const { items, setItems, isLoading } = useSearchStore(useShallow(state => ({
     items: state.items,
-    setItem: state.setItem,
+    setItems: state.setItems,
     isLoading: state.isLoading
   })))
-
+  const [_,setItemsLocalStorage] = useLocalStorage<TItems>('item', { name: '', latitude: 0, longitude: 0 })
   const [ debouncedQuery ] = useDebounce(query, 300)
 
   useEffect(() => {
-    setItem(debouncedQuery)
-  }, [setItem, debouncedQuery])
+    setItems(debouncedQuery)
+  }, [setItems, debouncedQuery])
 
   return (
     <form className='flex justify-between items-center gap-3 min-w-[400px]'>
@@ -72,18 +74,19 @@ export const Search = () => {
             onOpenAutoFocus={(e) => e.preventDefault()}
           >
             <CommandList className="max-h-80">
-              {!items.size
-                ? <div className="p-1 text-center text-sm text-gray-400">{isLoading ? "Loading" : "No results found."}</div>
-                : Array.from(items).map((item, index) => (
+              {!items.length
+                ? <div className="p-1 text-center text-sm text-gray-400">{isLoading ? "Loading..." : "No results found."}</div>
+                : items.map(({ name, latitude, longitude }, index) => (
                   <CommandItem
                     className='text-white h-full'
-                    key={`${item}-${index}`}
+                    key={`${name}-${index}`}
                     onSelect={() => {
                       setOpen(false)
-                      navigate(`/${item.toLowerCase()}`)
+                      navigate(`/${name.toLowerCase()}`, { state: { latitude, longitude }})
+                      setItemsLocalStorage({ name, latitude, longitude })
                     }}
                   >
-                    {item}
+                    {name}
                   </CommandItem>
                 ))
               }

@@ -54,3 +54,9 @@ export type TCity = {
   latitude: number,
   longitude: number,
 }
+
+export type TItems = {
+  name: string,
+  latitude: number,
+  longitude: number,
+}

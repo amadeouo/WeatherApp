@@ -16,8 +16,7 @@ import { useSearchStore } from "@/store/useSearchStore.ts";
 import { useDebounce } from "use-debounce";
 import { useNavigate } from "react-router";
 import { useShallow } from "zustand/react/shallow";
-import { useLocalStorage } from "usehooks-ts";
-import type { TItems } from "@/types/types.ts";
+import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 
 export const Search = () => {
   const [open, setOpen] = useState<boolean>(false)
@@ -28,7 +27,7 @@ export const Search = () => {
     setItems: state.setItems,
     isLoading: state.isLoading
   })))
-  const [_,setItemsLocalStorage] = useLocalStorage<TItems>('item', { name: '', latitude: 0, longitude: 0 })
+  const { setItemFromLocalStorage } = useLocalStorageContext()
   const [ debouncedQuery ] = useDebounce(query, 300)
 
   useEffect(() => {
@@ -82,8 +81,8 @@ export const Search = () => {
                     key={`${name}-${index}`}
                     onSelect={() => {
                       setOpen(false)
-                      navigate(`/${name.toLowerCase()}`, { state: { latitude, longitude }})
-                      setItemsLocalStorage({ name, latitude, longitude })
+                      navigate(`/${name.toLowerCase()}`)
+                      setItemFromLocalStorage({ name, latitude, longitude })
                     }}
                   >
                     {name}

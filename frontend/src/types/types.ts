@@ -12,7 +12,7 @@ export type TCurrentForecastParams = {
   latitude: number
   longitude: number
   current: string[]
-  timezone: "auto",
+  timezone: string,
 }
 
 export type TDailyForecast = {
@@ -26,7 +26,7 @@ export type TDailyForecastParams = {
   latitude: number
   longitude: number
   daily: string[]
-  timezone: "auto",
+  timezone: string,
 }
 
 export type THourlyForecast = {
@@ -50,6 +50,12 @@ export type TLocation = {
 
 export type TCity = {
   id: number,
+  name: string,
+  latitude: number,
+  longitude: number,
+}
+
+export type TItems = {
   name: string,
   latitude: number,
   longitude: number,

@@ -1,15 +1,16 @@
 import { create } from "zustand/react";
+import type { TItems } from "@/types/types.ts";
 
 export interface SearchStore {
-  items: Set<string>,
+  items: TItems[],
   isLoading: boolean,
   error: string | null,
   // setInitialItems: () => void,
-  setItem: (query: string) => void,
+  setItems: (query: string) => void,
 }
 
 export const useSearchStore = create<SearchStore>((set) => ({
-  items: new Set<string>(),
+  items: [],
   isLoading: false,
   error: null,
 
@@ -43,21 +44,32 @@ export const useSearchStore = create<SearchStore>((set) => ({
   //     }
   //   }
   // },
-  setItem: async (query: string) => {
+  setItems: async (query: string) => {
     const queryTrimmed = query.trim()
     set({ isLoading: true })
+    if (!queryTrimmed) {
+      set({ items: [], isLoading: false })
+    }
     try {
       const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${queryTrimmed}&count=4&language=eng&format=json`)
       const data = await response.json()
-      const items = new Set<string>(data.results.map((item: any) => item.name))
+      // const items = new Set<string>(data.results.map((item: any) => item.name))
+      // set({ items: items })
+      const rawItems = data.results.map((item: any) => ({
+        name: item.name,
+        latitude: item.latitude,
+        longitude: item.longitude,
+      }))
+      const items = rawItems.reduce((acc: any, item: any ) => {
+        if (!acc.find((i: any) => i.name === item.name)) acc.push(item)
+        return acc
+      }, [])
       set({ items: items })
+
     } catch (e: any) {
       set({ error: e.message })
     } finally {
       set({ isLoading: false })
-    }
-    if (!queryTrimmed) {
-      set({ items: new Set<string>() })
     }
   }
 }))

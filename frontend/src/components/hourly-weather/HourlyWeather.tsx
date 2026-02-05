@@ -18,6 +18,8 @@ import {
 } from "@/components/hourly-weather/components/HourlyWeatherOption.tsx";
 import { weatherAlt, weatherCodeLink } from "@/utils/weatherCode.ts";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
+import { formatTemperature } from "@/utils/formatTemperature.ts";
+import { useUnitsStore } from "@/store/useUnitsStore.ts";
 
 export const HourlyWeather = () => {
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
@@ -30,6 +32,7 @@ export const HourlyWeather = () => {
     hourlyForecast: state.hourlyForecast,
     getHourlyForecast: state.getHourlyForecast,
   } )))
+  const temperature = useUnitsStore(state => state.temperature)
 
   const hourlyData = useHourlyData(hourlyForecast, day);
 
@@ -45,7 +48,7 @@ export const HourlyWeather = () => {
     <section className='w-full h-full'>
       <div className='w-full h-auto bg-neutral-700 rounded-xl p-4'>
         <div className='flex justify-btween items-center gap-20'>
-          <h3 className='text-lg'>Hourley forecast</h3>
+          <h3 className='text-lg'>Hourly forecast</h3>
           <Select
             defaultValue={today}
             value={day}
@@ -85,7 +88,7 @@ export const HourlyWeather = () => {
                           hour: '2-digit',
                           minute: '2-digit'
                         })}
-                        temperature={Math.round(item.temperature)}
+                        temperature={formatTemperature(Math.round(item.temperature), temperature)}
                         weatherCodeLink={weatherCodeLink(item.weatherCode)}
                         weatherCodeAlt={weatherAlt(weatherCodeLinkSrc)}
                       />

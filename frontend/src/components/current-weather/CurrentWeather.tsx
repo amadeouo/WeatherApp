@@ -3,33 +3,48 @@ import { useWeatherStore } from "@/store/useWeatherStore.ts";
 import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 import { transformData } from "@/utils/transformData.ts";
 import { weatherAlt, weatherCodeLink } from "@/utils/weatherCode.ts";
-import { CurrentWeatherOption } from "@/components/current-weather/components/CurrentWeatherOption.tsx";
+import {
+  CurrentWeatherOption
+} from "@/components/current-weather/components/CurrentWeatherOption.tsx";
 import { useShallow } from "zustand/react/shallow";
 import { paramsCurrent } from "@/utils/weatherParams.ts";
+import { formatWindSpeed } from "@/utils/formatWindSpeed.ts";
+import { formatPrecipitation } from "@/utils/formatPrecipitation.ts";
+import { useUnitsStore } from "@/store/useUnitsStore.ts";
+import { formatTemperature } from "@/utils/formatTemperature.ts";
 
 export const CurrentWeather = () => {
   const { getCurrentWeather, currentForecast } = useWeatherStore(useShallow(state => ({
     getCurrentWeather: state.getCurrentWeather,
     currentForecast: state.currentForecast,
   })))
+  const {
+    temperature,
+    precipitation,
+    windSpeed
+  } = useUnitsStore(useShallow(state => ( {
+    temperature: state.temperature,
+    precipitation: state.precipitation,
+    windSpeed: state.windSpeed,
+  } )))
   const { itemFromLocalStorage } = useLocalStorageContext()
 
   const weatherOptions = [
     {
       label: 'Feels like',
-      data: `${currentForecast?.apparent_temperature.toFixed(0)}°`,
+      data: formatTemperature(currentForecast?.apparent_temperature.toFixed(0), temperature),
     },
     {
       label: 'Humidity',
-      data: `${currentForecast?.relative_humidity_2m}%`,
+      data: currentForecast?.relative_humidity_2m,
     },
     {
       label: 'Wind',
-      data: `${currentForecast?.wind_speed_10m.toFixed(0)} m/s`,
+      data: formatWindSpeed(currentForecast?.wind_speed_10m.toFixed(0), windSpeed),
     },
     {
       label: 'Precipitation',
-      data: `${currentForecast?.precipitation.toFixed(0)} mm`,
+      data: formatPrecipitation(currentForecast?.precipitation.toFixed(0), precipitation),
     }
   ]
 

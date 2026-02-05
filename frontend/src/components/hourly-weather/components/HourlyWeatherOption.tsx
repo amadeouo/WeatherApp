@@ -1,6 +1,6 @@
 type Props = {
   time: string,
-  temperature: number,
+  temperature: string,
   weatherCodeLink: string,
   weatherCodeAlt: string | undefined,
 }
@@ -18,7 +18,7 @@ export const HourlyWeatherOption = ({ time, temperature, weatherCodeLink, weathe
         />
         <span>{time}</span>
       </div>
-      <span>{temperature}°</span>
+      <span>{temperature}</span>
     </div>
   )
 }

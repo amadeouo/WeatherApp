@@ -74,8 +74,24 @@ export const Search = () => {
           >
             <CommandList className="max-h-80">
               {!items.length
-                ? <div className="p-1 text-center text-sm text-gray-400">{isLoading ? "Loading..." : "No results found."}</div>
-                : items.map(({ name, latitude, longitude }, index) => (
+                ? (
+                  <div className="p-1 text-center text-sm text-gray-400">
+                    <div className='flex items-center gap-3'>
+                      {isLoading && (
+                        <img
+                          className='animate-spin'
+                          src="/images/icon-loading.svg"
+                          alt="loading"
+                          width=""
+                          height=""
+                          loading="lazy"
+                        />
+                      )
+                      }
+                      <span>{isLoading ? "Loading..." : "No results found."}</span>
+                    </div>
+                  </div> )
+                : (items.map(({ name, latitude, longitude }, index) => (
                   <CommandItem
                     className='text-white h-full'
                     key={`${name}-${index}`}
@@ -87,7 +103,7 @@ export const Search = () => {
                   >
                     {name}
                   </CommandItem>
-                ))
+                )))
               }
             </CommandList>
           </PopoverContent>

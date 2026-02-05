@@ -21,7 +21,7 @@ export const Weather = () => {
     } else {
       setLocalError(false)
     }
-  }, [locationPathname, itemFromLocalStorage])
+  }, [locationPathname, itemFromLocalStorage.name])
 
   if (error || localError) return (<ErrorPage />)
 

@@ -14,7 +14,7 @@ export const MainLayout = () => {
   useEffect(() => {
     getLocation()
     if (itemFromLocalStorage.name && location === '/') {
-      navigate(`/${itemFromLocalStorage.name}`)
+      navigate(`/${itemFromLocalStorage.name.toLowerCase()}`)
     }
   }, [getLocation, navigate, itemFromLocalStorage.name])
 

@@ -3,33 +3,48 @@ import { useWeatherStore } from "@/store/useWeatherStore.ts";
 import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 import { transformData } from "@/utils/transformData.ts";
 import { weatherAlt, weatherCodeLink } from "@/utils/weatherCode.ts";
-import { CurrentWeatherOption } from "@/components/current-weather/components/CurrentWeatherOption.tsx";
+import {
+  CurrentWeatherOption
+} from "@/components/current-weather/components/CurrentWeatherOption.tsx";
 import { useShallow } from "zustand/react/shallow";
 import { paramsCurrent } from "@/utils/weatherParams.ts";
+import { formatWindSpeed } from "@/utils/formatWindSpeed.ts";
+import { formatPrecipitation } from "@/utils/formatPrecipitation.ts";
+import { useUnitsStore } from "@/store/useUnitsStore.ts";
+import { formatTemperature } from "@/utils/formatTemperature.ts";
 
 export const CurrentWeather = () => {
   const { getCurrentWeather, currentForecast } = useWeatherStore(useShallow(state => ({
     getCurrentWeather: state.getCurrentWeather,
     currentForecast: state.currentForecast,
   })))
+  const {
+    temperature,
+    precipitation,
+    windSpeed
+  } = useUnitsStore(useShallow(state => ( {
+    temperature: state.temperature,
+    precipitation: state.precipitation,
+    windSpeed: state.windSpeed,
+  } )))
   const { itemFromLocalStorage } = useLocalStorageContext()
 
   const weatherOptions = [
     {
       label: 'Feels like',
-      data: `${currentForecast?.apparent_temperature.toFixed(0)}°`,
+      data: formatTemperature(currentForecast?.apparent_temperature.toFixed(0), temperature),
     },
     {
       label: 'Humidity',
-      data: `${currentForecast?.relative_humidity_2m}%`,
+      data: currentForecast?.relative_humidity_2m,
     },
     {
       label: 'Wind',
-      data: `${currentForecast?.wind_speed_10m.toFixed(0)} m/s`,
+      data: formatWindSpeed(currentForecast?.wind_speed_10m.toFixed(0), windSpeed),
     },
     {
       label: 'Precipitation',
-      data: `${currentForecast?.precipitation.toFixed(0)} mm`,
+      data: formatPrecipitation(currentForecast?.precipitation.toFixed(0), precipitation),
     }
   ]
 
@@ -44,13 +59,13 @@ export const CurrentWeather = () => {
   const weatherCodeLinkSrc = weatherCodeLink(currentForecast?.weather_code)
 
   return (
-    <section className='max-w-[800px] col-start-1 col-end-4 row-start-1 row-end-3'>
-      <div className='min-h-[286px] rounded-xl flex items-center px-4 justify-between bg-[url("/images/bg-today-large.svg")]'>
-        <div className=''>
+    <section className='h-auto'>
+      <div className='relative min-h-[286px] rounded-xl flex items-center px-4 justify-between bg-[url("/images/bg-today-large.svg")] bg-center bg-cover'>
+        <div className='z-1'>
           <h3 className='text-4xl'>{itemFromLocalStorage.name}</h3>
           <p className='text-lg'>{transformData(currentForecast?.time)}</p>
         </div>
-        <div className='flex gap-7'>
+        <div className='flex gap-7 z-2'>
           <img
             className={`${weatherCodeLinkSrc ? "" : "animate-spin"} h-[80px] w-[80px]`}
             src={weatherCodeLinkSrc ? weatherCodeLinkSrc : "/images/icon-loading.svg"}

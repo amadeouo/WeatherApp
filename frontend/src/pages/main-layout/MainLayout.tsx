@@ -17,7 +17,7 @@ export const MainLayout = () => {
 
   return (
     <div className='flex justify-center h-full px-20 py-4 text-white'>
-      <div className='w-full max-w-[1440px] '>
+      <div className='w-full max-w-[1440px]'>
         <Header />
         <Hero />
         <Outlet />

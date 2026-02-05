@@ -1,5 +1,5 @@
 import { Header } from "@/widgets/header/Header.tsx";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet, useLocation, useNavigate } from "react-router";
 import { Hero } from "@/widgets/hero/Hero.tsx";
 import { useEffect } from "react";
 import { useGeolocationStore } from "@/store/useGeolocationStore.ts";
@@ -9,10 +9,13 @@ export const MainLayout = () => {
   const getLocation = useGeolocationStore(state => state.getLocation)
   const {itemFromLocalStorage} = useLocalStorageContext()
   const navigate = useNavigate()
+  const location = useLocation().pathname
 
   useEffect(() => {
     getLocation()
-    if (itemFromLocalStorage.name) navigate(`/${itemFromLocalStorage.name.toLowerCase()}`)
+    if (itemFromLocalStorage.name && location === '/') {
+      navigate(`/${itemFromLocalStorage.name}`)
+    }
   }, [getLocation, navigate, itemFromLocalStorage.name])
 
   return (

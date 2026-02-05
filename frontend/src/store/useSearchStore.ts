@@ -49,13 +49,14 @@ export const useSearchStore = create<SearchStore>((set) => ({
     set({ isLoading: true })
     if (!queryTrimmed) {
       set({ items: [], isLoading: false })
+      return
     }
     try {
-      const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${queryTrimmed}&count=4&language=eng&format=json`)
+      const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(queryTrimmed)}&count=4&language=eng&format=json`)
       const data = await response.json()
-      // const items = new Set<string>(data.results.map((item: any) => item.name))
-      // set({ items: items })
-      const rawItems = data.results.map((item: any) => ({
+      
+      const results = Array.isArray(data.results) ? data.results : []
+      const rawItems = results.map((item: any) => ({
         name: item.name,
         latitude: item.latitude,
         longitude: item.longitude,
@@ -71,5 +72,5 @@ export const useSearchStore = create<SearchStore>((set) => ({
     } finally {
       set({ isLoading: false })
     }
-  }
+  },
 }))

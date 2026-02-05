@@ -44,13 +44,13 @@ export const CurrentWeather = () => {
   const weatherCodeLinkSrc = weatherCodeLink(currentForecast?.weather_code)
 
   return (
-    <section className='max-w-[800px] col-start-1 col-end-4 row-start-1 row-end-3'>
-      <div className='min-h-[286px] rounded-xl flex items-center px-4 justify-between bg-[url("/images/bg-today-large.svg")]'>
-        <div className=''>
+    <section className='col-start-1 col-end-3 row-start-1 row-end-2'>
+      <div className='relative min-h-[286px] rounded-xl flex items-center px-4 justify-between bg-[url("/images/bg-today-large.svg")] bg-center bg-cover'>
+        <div className='z-1'>
           <h3 className='text-4xl'>{itemFromLocalStorage.name}</h3>
           <p className='text-lg'>{transformData(currentForecast?.time)}</p>
         </div>
-        <div className='flex gap-7'>
+        <div className='flex gap-7 z-2'>
           <img
             className={`${weatherCodeLinkSrc ? "" : "animate-spin"} h-[80px] w-[80px]`}
             src={weatherCodeLinkSrc ? weatherCodeLinkSrc : "/images/icon-loading.svg"}

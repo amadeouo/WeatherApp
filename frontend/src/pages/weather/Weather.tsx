@@ -6,7 +6,7 @@ import { HourlyWeather } from "@/components/hourly-weather/HourlyWeather.tsx";
 
 export const Weather = () => {
   return (
-    <main className='mt-7 grid grid-cols-4 grid-rows-3'>
+    <main className='mt-7 grid grid-cols-2 grid-rows-2 gap-x-4'>
       <CurrentWeather />
       <DailyWeather />
       <HourlyWeather />

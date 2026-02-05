@@ -33,16 +33,16 @@ export const HourlyWeather = () => {
   console.log(day)
 
   return (
-    <section className='col-start-4 col-end-5 row-start-1 row-end-4 h-full'>
+    <section className='col-start-3 col-end-4 row-start-1 row-end-3 h-full w-full'>
       <div className='w-full h-full bg-neutral-700 rounded-xl p-4'>
-        <div className='flex justify-between items-center'>
-          <h3 className='text-sm'>Hourly forecast</h3>
+        <div className='flex justify-between items-center gap-20'>
+          <h3 className='text-lg'>Hourly forecast</h3>
           <Select
             defaultValue={today}
             value={day}
             onValueChange={setDay}
           >
-            <SelectTrigger className="min-w-[120px] pl-4">
+            <SelectTrigger className="min-w-[140px] pl-4">
               <SelectValue
                 placeholder="Day of week"
               />
@@ -61,6 +61,9 @@ export const HourlyWeather = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
+        </div>
+        <div>
+
         </div>
       </div>
     </section>

@@ -15,9 +15,9 @@ export const ErrorPage = () => {
         height="50"
         loading="lazy"
       />
-      <h1 className='text-5xl'>Something went wrong</h1>
-      <p className='text-sm text-zinc-400 w-100 text-center'>We couldn't connect to the server (API error). Please try again in a few moments</p>
-      <div className='flex gap-2'>
+      <h1 className='sm:text-2xl md:text-5xl'>Something went wrong</h1>
+      <p className='text-sm text-zinc-400 sm:w-80 md:w-100 text-center'>We couldn't connect to the server (API error). Please try again in a few moments</p>
+      <div className='flex gap-2 sm:flex-col image:flex-row'>
         <Button onClick={() => window.location.reload()}>
           <img
             src="/images/icon-retry.svg"

@@ -31,8 +31,8 @@ export const DailyWeather = () => {
 
   return (
     <section className='mt-2 h-auto'>
-      <h3 className='mb-2'>Daily forecast</h3>
-      <div className='flex justify-stretch gap-2'>
+      <h3 className='mb-2 text-lg'>Daily forecast</h3>
+      <div className='flex justify-stretch gap-2 sm:grid sm:grid-cols-3 image:grid-cols-4 lg:grid-cols-7'>
         {days.map((day) => {
           const weatherCodeLinkSrc = weatherCodeLink(day.weatherCode)
           return (

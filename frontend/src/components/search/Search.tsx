@@ -35,21 +35,21 @@ export const Search = () => {
   }, [setItems, debouncedQuery])
 
   return (
-    <form className='flex justify-between items-center gap-3 min-w-[400px]'>
-      <Command className="overflow-visible bg-transparent">
+    <form className='flex justify-center md:flex-row gap-3 w-full sm:flex-col sm:gap-2'>
+      <Command className="overflow-visible bg-transparent md:max-w-[350px]">
         <Popover
           open={open}
           onOpenChange={setOpen}
         >
           <PopoverTrigger asChild>
-            <div className='w-full relative flex items-center bg-neutral-700 rounded-md p-0 z-0'>
+            <div className='w-full relative flex items-center bg-neutral-700 rounded-md p-0 z-0 '>
               <CommandInput
                 value={query}
                 onValueChange={(q) => {
                   setQuery(q)
                   if (!open) setOpen(true)
                 }}
-                className='border-none w-full focus:outline-none text-white pl-10 z-1'
+                className='border-none w-full focus:outline-none md:max-w-[400px] text-white pl-10 z-1'
                 onFocus={() => setOpen(false)}
               />
               <svg
@@ -69,8 +69,9 @@ export const Search = () => {
             </div>
           </PopoverTrigger>
           <PopoverContent
-            className={`p-1 min-w-[293px] bg-neutral-700 text-white border-none`}
+            className={`p-1 bg-neutral-700 text-white border-none w-[var(--radix-popover-trigger-width)] max-h-[var(--radix-popover-content-available-height)]`}
             onOpenAutoFocus={(e) => e.preventDefault()}
+            side='bottom'
           >
             <CommandList className="max-h-80">
               {!items.length
@@ -110,7 +111,8 @@ export const Search = () => {
         </Popover>
       </Command>
       <Button
-        size='lg'
+        className='bg-blue-500 md:w-auto sm:w-full hover:bg-blue-950 cursor-pointer'
+        size='default'
         onClick={(e) => {
           e.preventDefault()
           if (!query) return

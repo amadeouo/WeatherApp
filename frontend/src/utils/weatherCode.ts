@@ -12,14 +12,14 @@
 // 95 *	Thunderstorm: Slight or moderate
 // 96, 99 *	Thunderstorm with slight and heavy hail
 const WEATHER_CODE_CONFIG = new Map([
-  ["images/icon-sunny.webp", [0]],
-  ["images/icon-partly-cloudy.webp", [1, 2]],
-  ["images/icon-overcast.webp", [3]],
-  ["images/icon-fog.webp", [45, 48]],
-  ["images/icon-drizzle.webp", [51, 53, 55, 56, 57]],
-  ["images/icon-rain.webp", [61, 63, 65, 66, 67, 80, 81, 82]],
-  ["images/icon-snow.webp", [71, 73, 75, 77, 85, 86]],
-  ["images/icon-storm.webp", [95, 96, 99]],
+  ["/images/icon-sunny.webp", [0]],
+  ["/images/icon-partly-cloudy.webp", [1, 2]],
+  ["/images/icon-overcast.webp", [3]],
+  ["/images/icon-fog.webp", [45, 48]],
+  ["/images/icon-drizzle.webp", [51, 53, 55, 56, 57]],
+  ["/images/icon-rain.webp", [61, 63, 65, 66, 67, 80, 81, 82]],
+  ["/images/icon-snow.webp", [71, 73, 75, 77, 85, 86]],
+  ["/images/icon-storm.webp", [95, 96, 99]],
 ])
 
 export const weatherCodeLink = (weatherCode: number | undefined): string => {

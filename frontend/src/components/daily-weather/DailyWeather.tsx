@@ -40,7 +40,7 @@ export const DailyWeather = () => {
               min={formatTemperature(day.minTemp, temperature)}
               max={formatTemperature(day.maxTemp, temperature)}
               weekday={day.weekDay}
-              icon={weatherCodeLinkSrc ? weatherCodeLinkSrc : "images/icon-loading.svg"}
+              icon={weatherCodeLinkSrc ? weatherCodeLinkSrc : "/images/icon-loading.svg"}
               iconAlt={weatherCodeLinkSrc ? weatherAlt(weatherCodeLinkSrc) : "loading"}
               key={day.date.toISOString()}
             />

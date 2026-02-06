@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useWeatherStore } from "@/store/useWeatherStore.ts";
 import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 import { transformData } from "@/utils/transformData.ts";
@@ -24,7 +24,6 @@ export const CurrentWeather = () => {
     windSpeed: state.windSpeed,
   } )))
   const { itemFromLocalStorage } = useLocalStorageContext()
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
 
   const weatherOptions = [
     {
@@ -45,12 +44,6 @@ export const CurrentWeather = () => {
     }
   ]
 
-  const resizeHandler = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    })
-  }
 
   useEffect(() => {
     getCurrentWeather({
@@ -58,8 +51,6 @@ export const CurrentWeather = () => {
       latitude: itemFromLocalStorage.latitude,
       longitude: itemFromLocalStorage.longitude
     })
-    window.addEventListener('resize', resizeHandler)
-    return () => window.removeEventListener('resize', resizeHandler)
   }, [getCurrentWeather, itemFromLocalStorage.latitude, itemFromLocalStorage.longitude])
 
   const weatherCodeLinkSrc = weatherCodeLink(currentForecast?.weather_code)
@@ -67,15 +58,16 @@ export const CurrentWeather = () => {
   return (
     <section className='h-auto'>
       <div
-        className={`
+        className="
           relative min-h-[286px] rounded-xl flex items-center px-4 justify-between
-          ${windowSize.width > 540 ? "bg-[url(images/bg-today-large.svg)]" : "bg-[url(images/bg-today-small.svg)]"}
-          bg-center bg-cover 
+          bg-[url(/WeatherApp/images/bg-today-small.svg)]
+          image:bg-[url(/WeatherApp/images/bg-today-large.svg)]
+          bg-center bg-cover
           sm:flex-col sm:gap-9 sm:justify-center
           image:flex-row image:justify-between
           xl:px-7
-        `
-      }>
+        "
+      >
         <div className='flex flex-col z-1 sm:gap-2'>
           <h3 className='sm:text-3xl sm:text-center image:text-left image:text-3xl lg:text-5xl xl:text-6xl'>{itemFromLocalStorage.name}</h3>
           <p className='text-lg sm:text-sm sm:text-neutral-300 image:text-md lg:text-xl xl:text-2xl'>{transformData(currentForecast?.time)}</p>
@@ -83,7 +75,7 @@ export const CurrentWeather = () => {
         <div className='flex items-center gap-7 z-2 sm:gap-2  image:gap-7'>
           <img
             className={`${weatherCodeLinkSrc ? "" : "animate-spin"} h-[80px] w-[80px] xl:w-[100px] xl:h-[100px]`}
-            src={weatherCodeLinkSrc ? weatherCodeLinkSrc : "images/icon-loading.svg"}
+            src={weatherCodeLinkSrc ? weatherCodeLinkSrc : "/images/icon-loading.svg"}
             alt={weatherCodeLinkSrc ? weatherAlt(weatherCodeLinkSrc) : "loading"}
             loading="lazy"
           />

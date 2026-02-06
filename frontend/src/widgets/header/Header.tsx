@@ -5,7 +5,7 @@ export const Header = () => {
     <header className='flex justify-between'>
       <img
         className="sm:w-[120px] md:w-[200px]"
-        src="/images/logo.svg"
+        src="images/logo.svg"
         alt="logo"
         loading="lazy"
       />

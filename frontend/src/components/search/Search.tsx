@@ -81,7 +81,7 @@ export const Search = () => {
                       {isLoading && (
                         <img
                           className='animate-spin'
-                          src="/images/icon-loading.svg"
+                          src="images/icon-loading.svg"
                           alt="loading"
                           width=""
                           height=""

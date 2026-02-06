@@ -8,7 +8,7 @@ import { LocalStorageProvider } from "@/app/context/LocalStorageProvider.tsx";
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <LocalStorageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/WeatherApp">
         <App />
       </BrowserRouter>
     </LocalStorageProvider>

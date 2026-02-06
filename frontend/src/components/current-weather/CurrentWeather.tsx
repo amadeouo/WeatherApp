@@ -69,7 +69,7 @@ export const CurrentWeather = () => {
       <div
         className={`
           relative min-h-[286px] rounded-xl flex items-center px-4 justify-between
-          ${windowSize.width > 540 ? "bg-[url(/images/bg-today-large.svg)]" : "bg-[url(/images/bg-today-small.svg)]"}
+          ${windowSize.width > 540 ? "bg-[url(images/bg-today-large.svg)]" : "bg-[url(images/bg-today-small.svg)]"}
           bg-center bg-cover 
           sm:flex-col sm:gap-9 sm:justify-center
           image:flex-row image:justify-between
@@ -83,7 +83,7 @@ export const CurrentWeather = () => {
         <div className='flex items-center gap-7 z-2 sm:gap-2  image:gap-7'>
           <img
             className={`${weatherCodeLinkSrc ? "" : "animate-spin"} h-[80px] w-[80px] xl:w-[100px] xl:h-[100px]`}
-            src={weatherCodeLinkSrc ? weatherCodeLinkSrc : "/images/icon-loading.svg"}
+            src={weatherCodeLinkSrc ? weatherCodeLinkSrc : "images/icon-loading.svg"}
             alt={weatherCodeLinkSrc ? weatherAlt(weatherCodeLinkSrc) : "loading"}
             loading="lazy"
           />

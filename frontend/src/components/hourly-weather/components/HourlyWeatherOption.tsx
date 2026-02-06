@@ -10,7 +10,7 @@ export const HourlyWeatherOption = ({ time, temperature, weatherCodeLink, weathe
       <div className='flex items-center gap-2'>
         <img
           className={`${weatherCodeLink ? "" : "animate-spin"}`}
-          src={weatherCodeLink ? weatherCodeLink : "/images/icon-loading.svg"}
+          src={weatherCodeLink ? weatherCodeLink : "images/icon-loading.svg"}
           alt={weatherCodeAlt ? weatherCodeAlt : "loading"}
           width="50"
           height="50"

@@ -60,8 +60,8 @@ export const CurrentWeather = () => {
       <div
         className="
           relative min-h-[286px] rounded-xl flex items-center px-4 justify-between
-          bg-[url(/WeatherApp/images/bg-today-small.svg)]
-          image:bg-[url(/WeatherApp/images/bg-today-large.svg)]
+          bg-[url(/images/bg-today-small.svg)]
+          image:bg-[url(/images/bg-today-large.svg)]
           bg-center bg-cover
           sm:flex-col sm:gap-9 sm:justify-center
           image:flex-row image:justify-between

@@ -14,13 +14,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: '/WeatherApp/',
-  optimizeDeps: {
-    include: ['linked-dep'],
-  },
-  build: {
-    commonjsOptions: {
-      include: [/linked-dep/, /node_modules/],
-    },
-  },
+  // base: '/WeatherApp/',
 })

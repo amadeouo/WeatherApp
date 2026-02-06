@@ -12,6 +12,8 @@ import { paramsDaily } from "@/utils/weatherParams.ts";
 import { formatTemperature } from "@/utils/formatTemperature.ts";
 import { useUnitsStore } from "@/store/useUnitsStore.ts";
 
+import loadingIcon from "@/app/assets/images/icon-loading.svg";
+
 export const DailyWeather = () => {
   const getDailyForecast = useWeatherStore(state => state.getDailyForecast)
   const dailyForecast = useWeatherStore(state => state.dailyForecast)
@@ -40,7 +42,7 @@ export const DailyWeather = () => {
               min={formatTemperature(day.minTemp, temperature)}
               max={formatTemperature(day.maxTemp, temperature)}
               weekday={day.weekDay}
-              icon={weatherCodeLinkSrc ? weatherCodeLinkSrc : "/images/icon-loading.svg"}
+              icon={weatherCodeLinkSrc ? weatherCodeLinkSrc : loadingIcon}
               iconAlt={weatherCodeLinkSrc ? weatherAlt(weatherCodeLinkSrc) : "loading"}
               key={day.date.toISOString()}
             />

@@ -13,6 +13,10 @@ import { formatPrecipitation } from "@/utils/formatPrecipitation.ts";
 import { useUnitsStore } from "@/store/useUnitsStore.ts";
 import { formatTemperature } from "@/utils/formatTemperature.ts";
 
+import loadingIcon from "@/app/assets/images/icon-loading.svg";
+import bgTodaySmall from "@/app/assets/images/bg-today-small.svg";
+import bgTodayLarge from "@/app/assets/images/bg-today-large.svg";
+
 export const CurrentWeather = () => {
   const { getCurrentWeather, currentForecast } = useWeatherStore(useShallow(state => ({
     getCurrentWeather: state.getCurrentWeather,
@@ -58,10 +62,12 @@ export const CurrentWeather = () => {
   return (
     <section className='h-auto'>
       <div
+        style={{
+          backgroundImage: `url(${bgTodaySmall})`
+        }}
         className="
           relative min-h-[286px] rounded-xl flex items-center px-4 justify-between
-          bg-[url(/images/bg-today-small.svg)]
-          image:bg-[url(/images/bg-today-large.svg)]
+          image:bg-[var(--bg-today-large)]
           bg-center bg-cover
           sm:flex-col sm:gap-9 sm:justify-center
           image:flex-row image:justify-between
@@ -75,7 +81,7 @@ export const CurrentWeather = () => {
         <div className='flex items-center gap-7 z-2 sm:gap-2  image:gap-7'>
           <img
             className={`${weatherCodeLinkSrc ? "" : "animate-spin"} h-[80px] w-[80px] xl:w-[100px] xl:h-[100px]`}
-            src={weatherCodeLinkSrc ? weatherCodeLinkSrc : "/images/icon-loading.svg"}
+            src={weatherCodeLinkSrc ? weatherCodeLinkSrc : loadingIcon}
             alt={weatherCodeLinkSrc ? weatherAlt(weatherCodeLinkSrc) : "loading"}
             loading="lazy"
           />

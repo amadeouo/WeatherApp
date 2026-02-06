@@ -19,7 +19,7 @@ export const MainLayout = () => {
   }, [getLocation, navigate, itemFromLocalStorage.name])
 
   return (
-    <div className='flex justify-center h-full px-20 py-4 text-white'>
+    <div className='flex justify-center h-full px-20 sm:px-4 py-4 md:px-15 lg:px-20 text-white'>
       <div className='w-full max-w-[1440px]'>
         <Header />
         <Hero />

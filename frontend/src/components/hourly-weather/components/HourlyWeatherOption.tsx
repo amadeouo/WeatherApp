@@ -6,7 +6,7 @@ type Props = {
 }
 export const HourlyWeatherOption = ({ time, temperature, weatherCodeLink, weatherCodeAlt }: Props) => {
   return (
-    <div className='flex justify-between items-center bg-neutral-600 rounded-md px-2 py-1 '>
+    <div className='flex justify-between items-center bg-neutral-600 rounded-md px-2 py-1'>
       <div className='flex items-center gap-2'>
         <img
           className={`${weatherCodeLink ? "" : "animate-spin"}`}

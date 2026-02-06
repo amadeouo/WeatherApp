@@ -45,16 +45,18 @@ export const HourlyWeather = () => {
   }, [itemFromLocalStorage.latitude, itemFromLocalStorage.longitude, getHourlyForecast])
 
   return (
-    <section className='w-full h-full'>
+    <section className='w-full h-full sm:mt-4 lg:mt-0'>
       <div className='w-full h-auto bg-neutral-700 rounded-xl p-4'>
-        <div className='flex justify-btween items-center gap-20'>
-          <h3 className='text-lg'>Hourly forecast</h3>
+        <div className='flex justify-between items-center lg:gap-20'>
+          <h3 className='text-lg sm:text-base md:text-lg lg:text-base'>Hourly forecast</h3>
           <Select
             defaultValue={today}
             value={day}
             onValueChange={setDay}
           >
-            <SelectTrigger className="min-w-[140px] pl-4">
+            <SelectTrigger
+              className="min-w-[140px] pl-4 sm:text-sm border-none bg-neutral-600 hover:bg-zinc-500 focus:outline-1 cursor-pointer"
+            >
               <SelectValue
                 placeholder="Day of week"
               />
@@ -64,6 +66,7 @@ export const HourlyWeather = () => {
                 {DAYS_CONFIG.map((day) => (
                   <SelectItem
                     className='bg-neutral-700'
+                    style={{  }}
                     value={day.weekDay}
                     key={day.id}
                   >
@@ -86,7 +89,7 @@ export const HourlyWeather = () => {
                         key={`${item.time}-${index}`}
                         time={item.time.toLocaleTimeString([], {
                           hour: '2-digit',
-                          minute: '2-digit'
+                          minute: '2-digit',
                         })}
                         temperature={formatTemperature(Math.round(item.temperature), temperature)}
                         weatherCodeLink={weatherCodeLink(item.weatherCode)}

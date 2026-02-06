@@ -15,7 +15,7 @@ body {
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
+@theme {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -55,19 +55,29 @@ body {
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* adding manually */
-  --color-neutral-900:  hsl(243, 96%, 9%);
+  /* вставлено вручную */
+  --color-white: #fff;
   --color-neutral-800: hsl(243, 27%, 20%);
   --color-neutral-700: hsl(243, 23%, 24%);
+  --color-neutral-500: hsl(245, 20%, 24%);
   --color-neutral-600: hsl(243, 23%, 30%);
   --color-neutral-300: hsl(240, 6%, 70%);
+  --color-neutral-900: hsl(243, 96%, 9%);
   --color-neutral-200: hsl(250, 6%, 84%);
   --color-neutral-0: hsl(0, 0%, 100%);
   --color-orange-500: hsl(28, 100%, 52%);
-  --color-blue-proj-500: hsl(233, 67%, 56%);
-  --color-blue-proj-700: hsl(248, 70%, 36%);
+  --color-blue-500: hsl(233, 67%, 56%);
+  --color-blue-700: hsl(248, 70%, 36%);
+  
+  --breakpoint-sm: 0px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-image: 520px;
 
-  --font-bricolage: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Bricolage Grotesque', sans-serif;
+  --font-serif: 'Bricolage Grotesque', sans-serif;
+  --font-mono: 'Bricolage Grotesque', sans-serif;
 }
 
 :root {

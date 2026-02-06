@@ -26,7 +26,7 @@ export const Weather = () => {
   if (error || localError) return (<ErrorPage />)
 
   return (
-    <main className='mt-7 grid grid-cols-[1fr_auto] gap-x-4 h-auto'>
+    <main className='sm:flex sm:flex-col mt-7 lg:grid lg:grid-cols-[1fr_auto] gap-x-4 h-auto'>
       <div className='flex flex-col gap-y-4'>
         <CurrentWeather />
         <DailyWeather />

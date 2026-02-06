@@ -23,7 +23,7 @@ export const Units = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className='bg-neutral-700'>
+        <Button className='bg-neutral-700 hover:bg-neutral-600 cursor-pointer'>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

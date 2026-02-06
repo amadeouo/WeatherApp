@@ -15,7 +15,6 @@ import { formatTemperature } from "@/utils/formatTemperature.ts";
 
 import loadingIcon from "@/app/assets/images/icon-loading.svg";
 import bgTodaySmall from "@/app/assets/images/bg-today-small.svg";
-import bgTodayLarge from "@/app/assets/images/bg-today-large.svg";
 
 export const CurrentWeather = () => {
   const { getCurrentWeather, currentForecast } = useWeatherStore(useShallow(state => ({

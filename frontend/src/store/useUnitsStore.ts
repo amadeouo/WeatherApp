@@ -9,7 +9,7 @@ export interface UnitStore {
   setWindSpeed: (unit: 'kmh' | 'mph') => void,
   setPrecipitation: (unit: 'mm' | 'in') => void,
   switchToImperial: () => void,
-  switchToBasic: () => void,
+  switchToMetric: () => void,
 }
 
 export const useUnitsStore = create<UnitStore>((set) => ({
@@ -27,7 +27,7 @@ export const useUnitsStore = create<UnitStore>((set) => ({
       precipitation: 'in',
     })
   },
-  switchToBasic: () => {
+  switchToMetric: () => {
     set({
       temperature: 'celsius',
       windSpeed: 'kmh',

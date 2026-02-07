@@ -73,7 +73,7 @@ export const CurrentWeather = () => {
         : (
           <div
             className={`
-            relative min-h-[286px] rounded-xl flex items-center px-4 justify-between
+            relative min-h-[260px] rounded-xl flex items-center px-4 justify-between
             bg-center bg-cover
             sm:flex-col sm:gap-9 sm:justify-center
             bg-[image:var(--bg-today-small)]
@@ -93,7 +93,7 @@ export const CurrentWeather = () => {
                 alt={weatherCodeLinkSrc ? weatherAlt(weatherCodeLinkSrc) : "loading"}
                 loading="lazy"
               />
-              <p className='text-7xl sm:text-7xl'>{currentForecast?.temperature_2m.toFixed(0)}°</p>
+              <p className='text-7xl sm:text-7xl italic'>{currentForecast?.temperature_2m.toFixed(0)}°</p>
             </div>
           </div>
         )

@@ -15,8 +15,8 @@ export const CurrentWeatherOption = ({ label, data, isLoading }: Props) => {
       `
       }
     >
-      <p className='text-zinc-400 sm:text-sm md:text-base'>{label}</p>
-      <p className='text-3xl sm:text-sm md:text-2xl'>{isLoading ? "-" : data}</p>
+      <p className='text-zinc-300 sm:text-sm md:text-base'>{label}</p>
+      <p className='text-3xl sm:text-sm md:text-2xl text-zinc-50'>{isLoading ? "-" : data}</p>
     </div>
   )
 }

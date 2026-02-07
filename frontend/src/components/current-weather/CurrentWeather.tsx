@@ -14,7 +14,6 @@ import { useUnitsStore } from "@/store/useUnitsStore.ts";
 import { formatTemperature } from "@/utils/formatTemperature.ts";
 
 import loadingIcon from "@/app/assets/images/icon-loading.svg";
-import bgTodaySmall from "@/app/assets/images/bg-today-small.svg";
 import { CurrentWeatherImageSkeleton } from "@/components/current-weather/components/CurrentWeatherImageSkeleton.tsx";
 
 export const CurrentWeather = () => {
@@ -73,17 +72,15 @@ export const CurrentWeather = () => {
         ? ( <CurrentWeatherImageSkeleton /> )
         : (
           <div
-            style={{
-              backgroundImage: `url(${bgTodaySmall})`
-            }}
-            className="
-            relative min-h-[286px] rounded-xl flex items-center px-4 justify-between
-            image:bg-[var(--bg-today-large)]
+            className={`
+            relative min-h-[260px] rounded-xl flex items-center px-4 justify-between
             bg-center bg-cover
             sm:flex-col sm:gap-9 sm:justify-center
+            bg-[image:var(--bg-today-small)]
+            image:bg-[image:var(--bg-today-large)]
             image:flex-row image:justify-between
             xl:px-7
-          "
+          `}
           >
             <div className='flex flex-col z-1 sm:gap-2'>
               <h3 className='sm:text-3xl sm:text-center image:text-left image:text-3xl lg:text-5xl xl:text-6xl'>{itemFromLocalStorage.name}</h3>
@@ -96,7 +93,7 @@ export const CurrentWeather = () => {
                 alt={weatherCodeLinkSrc ? weatherAlt(weatherCodeLinkSrc) : "loading"}
                 loading="lazy"
               />
-              <p className='text-7xl sm:text-7xl'>{currentForecast?.temperature_2m.toFixed(0)}°</p>
+              <p className='text-7xl sm:text-7xl italic'>{currentForecast?.temperature_2m.toFixed(0)}°</p>
             </div>
           </div>
         )

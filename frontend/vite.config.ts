@@ -4,15 +4,19 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 
 // https://vite.dev/config/
-export default defineConfig({
-  // server: {
-  //   host: true,
-  // },
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+export default defineConfig(({ mode }) => {
+  const isProd = mode === 'production'
+
+  return {
+    // server: {
+    //   host: true,
+    // },
+    plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
     },
-  },
-  base: './',
+    base: isProd ? '/WeatherApp/' : '/',
+  }
 })

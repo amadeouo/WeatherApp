@@ -43,8 +43,9 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
           wind_speed_10m: current.variables(5)!.value(),
         },
       })
-    } catch (e: any) {
-      set({ error: (e as Error).message })
+    } catch (e) {
+      const error = e as Error
+      set({ error: error.message })
     } finally {
       set({ isLoading: false })
     }
@@ -67,8 +68,9 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
           temperature_2m_min: daily.variables(2)!.valuesArray(),
         }
       })
-    } catch (e: any) {
-      set({ error: (e as Error).message })
+    } catch (e) {
+      const error = e as Error
+      set({ error: error.message })
     } finally {
       set({ isLoading: false})
     }
@@ -90,8 +92,9 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
           weather_code: hourly.variables(1)!.valuesArray(),
         }
       })
-    } catch (e: any) {
-      set({ error: (e as Error).message })
+    } catch (e) {
+      const error = e as Error
+      set({ error: error.message })
     } finally {
       set({ isLoading: false})
     }

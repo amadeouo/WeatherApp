@@ -70,16 +70,17 @@ body {
   --color-blue-700: hsl(248, 70%, 36%);
   
   --breakpoint-sm: 0px;
+  --breakpoint-image: 520px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1440px;
-  --breakpoint-image: 520px;
 
   --font-body: 'Bricolage Grotesque', sans-serif;
   --font-serif: 'Bricolage Grotesque', sans-serif;
   --font-mono: 'Bricolage Grotesque', sans-serif;
 
-  --bg-today-large: url('assets/images/bg-today-large.svg');
+  --bg-today-large: url('./assets/images/bg-today-large.svg');
+  --bg-today-small: url('./assets/images/bg-today-small.svg');
 }
 
 :root {

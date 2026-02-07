@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import { MainLayout } from "@/pages/main-layout/MainLayout.tsx";
-import { Weather } from "@/pages/weather/Weather.tsx";
+import { Weather } from "@/widgets/weather/Weather.tsx";
 
 function App() {
 

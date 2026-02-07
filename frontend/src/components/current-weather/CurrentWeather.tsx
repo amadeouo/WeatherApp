@@ -3,16 +3,13 @@ import { useWeatherStore } from "@/store/useWeatherStore.ts";
 import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 import { transformData } from "@/utils/transformData.ts";
 import { weatherAlt, weatherCodeLink } from "@/utils/weatherCode.ts";
-import {
-  CurrentWeatherOption
-} from "@/components/current-weather/components/CurrentWeatherOption.tsx";
+import { CurrentWeatherOption } from "@/components/current-weather/components/CurrentWeatherOption.tsx";
 import { useShallow } from "zustand/react/shallow";
 import { paramsCurrent } from "@/utils/weatherParams.ts";
 import { formatWindSpeed } from "@/utils/formatWindSpeed.ts";
 import { formatPrecipitation } from "@/utils/formatPrecipitation.ts";
 import { useUnitsStore } from "@/store/useUnitsStore.ts";
 import { formatTemperature } from "@/utils/formatTemperature.ts";
-
 import loadingIcon from "@/app/assets/images/icon-loading.svg";
 import { CurrentWeatherImageSkeleton } from "@/components/current-weather/components/CurrentWeatherImageSkeleton.tsx";
 
@@ -73,7 +70,7 @@ export const CurrentWeather = () => {
         : (
           <div
             className={`
-            relative min-h-[260px] rounded-xl flex items-center px-4 justify-between
+            relative min-h-[286px] rounded-xl flex items-center px-4 justify-between
             bg-center bg-cover
             sm:flex-col sm:gap-9 sm:justify-center
             bg-[image:var(--bg-today-small)]
@@ -86,7 +83,7 @@ export const CurrentWeather = () => {
               <h3 className='sm:text-3xl sm:text-center image:text-left image:text-3xl lg:text-5xl xl:text-6xl'>{itemFromLocalStorage.name}</h3>
               <p className='text-lg sm:text-sm sm:text-neutral-300 image:text-md lg:text-xl xl:text-2xl'>{transformData(currentForecast?.time)}</p>
             </div>
-            <div className='flex items-center gap-7 z-2 sm:gap-2  image:gap-7'>
+            <div className='flex items-center gap-7 z-2 sm:gap-2  image:gap-7 lg:gap-6'>
               <img
                 className={`${weatherCodeLinkSrc ? "" : "animate-spin"} h-[80px] w-[80px] xl:w-[100px] xl:h-[100px]`}
                 src={weatherCodeLinkSrc ? weatherCodeLinkSrc : loadingIcon}

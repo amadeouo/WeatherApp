@@ -18,20 +18,16 @@ export const MainLayout = () => {
   const location = useLocation().pathname
 
   useEffect(() => {
-    // Если мы на главной странице
     if (location === '/') {
-      // Если есть сохраненный город в localStorage, переходим на него
       if (itemFromLocalStorage.name) {
         navigate(`/${itemFromLocalStorage.name.toLowerCase()}`);
       } else {
-        // Иначе пытаемся определить местоположение
         setItemsFromLocation();
       }
     }
   }, [location, itemFromLocalStorage.name, navigate, setItemsFromLocation]);
 
   useEffect(() => {
-    // Если геолокация определила город и мы все еще на главной (или если это новый город)
     if (items.name && location === '/') {
       navigate(`/${items.name.toLowerCase()}`);
       setItemFromLocalStorage(items);

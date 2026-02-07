@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { useUnitsStore } from "@/store/useUnitsStore.ts";
 import { UnitItem } from "@/components/units/UnitItem.tsx";
 import { UNIT_CONFIG } from "@/components/units/unitConfig.ts";
+import { useShallow } from "zustand/react/shallow";
 
 export const Units = () => {
   const {
@@ -16,9 +17,18 @@ export const Units = () => {
     setPrecipitation,
     windSpeed,
     setWindSpeed,
-    switchToBasic,
+    switchToMetric,
     switchToImperial,
-  } = useUnitsStore()
+  } = useUnitsStore(useShallow(state => ({
+    temperature: state.temperature,
+    setTemperature: state.setTemperature,
+    precipitation: state.precipitation,
+    setPrecipitation: state.setPrecipitation,
+    windSpeed: state.windSpeed,
+    setWindSpeed: state.setWindSpeed,
+    switchToMetric: state.switchToMetric,
+    switchToImperial: state.switchToImperial,
+  })))
 
   return (
     <Popover>
@@ -73,9 +83,9 @@ export const Units = () => {
                 <Button
                   className='flex w-full text-white hover:bg-neutral-600 hover:text-white text-xs'
                   variant='ghost'
-                  onClick={switchToBasic}
+                  onClick={switchToMetric}
                 >
-                  Switch To Basic
+                  Switch To Metic
                 </Button>
               </div>
             )

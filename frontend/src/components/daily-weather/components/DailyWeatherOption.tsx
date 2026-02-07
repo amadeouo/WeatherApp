@@ -9,7 +9,7 @@ type Props = {
 export const DailyWeatherOption = ({ min, max, weekday, iconAlt, icon }: Props) => {
   return (
     <div
-      className="flex w-full items-center flex-col bg-neutral-700 rounded-md p-2 gap-1 lg:px-1 lg:py-2 xl:px-3 xl:py-4 lg:gap-0"
+      className="flex w-full items-center flex-col bg-neutral-700 rounded-md p-2 gap-1 lg:px-1 lg:py-2 xl:px-3 xl:py-2 lg:gap-0"
     >
       <p className='text-center xl:text-xl'>{weekday}</p>
       <img
@@ -21,8 +21,8 @@ export const DailyWeatherOption = ({ min, max, weekday, iconAlt, icon }: Props) 
         loading="lazy"
       />
       <div className='flex w-full justify-between pe-1.5 ps-1.5'>
-        <p className='text-xs xl:text-base'>{min}</p>
-        <p className='text-xs xl:text-base'>{max}</p>
+        <p className='text-xs xl:text-base text-zinc-50'>{min}</p>
+        <p className='text-xs xl:text-base text-zinc-300'>{max}</p>
       </div>
     </div>
   )

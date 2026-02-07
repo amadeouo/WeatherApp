@@ -18,6 +18,8 @@ import { useNavigate } from "react-router";
 import { useShallow } from "zustand/react/shallow";
 import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
 
+import loadingIcon from "@/app/assets/images/icon-loading.svg";
+
 export const Search = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [query, setQuery] = useState<string>('')
@@ -81,7 +83,7 @@ export const Search = () => {
                       {isLoading && (
                         <img
                           className='animate-spin'
-                          src="/images/icon-loading.svg"
+                          src={loadingIcon}
                           alt="loading"
                           width=""
                           height=""

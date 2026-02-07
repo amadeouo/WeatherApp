@@ -1,3 +1,5 @@
+import loadingIcon from "@/app/assets/images/icon-loading.svg";
+
 type Props = {
   time: string,
   temperature: string,
@@ -10,7 +12,7 @@ export const HourlyWeatherOption = ({ time, temperature, weatherCodeLink, weathe
       <div className='flex items-center gap-2'>
         <img
           className={`${weatherCodeLink ? "" : "animate-spin"}`}
-          src={weatherCodeLink ? weatherCodeLink : "/images/icon-loading.svg"}
+          src={weatherCodeLink ? weatherCodeLink : loadingIcon}
           alt={weatherCodeAlt ? weatherCodeAlt : "loading"}
           width="50"
           height="50"

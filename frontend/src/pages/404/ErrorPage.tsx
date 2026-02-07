@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button.tsx";
 import { Home } from "lucide-react";
 import { useNavigate } from "react-router";
 
+import errorIcon from "@/app/assets/images/icon-error.svg";
+import retryIcon from "@/app/assets/images/icon-retry.svg";
+
 export const ErrorPage = () => {
   const navigate = useNavigate();
 
@@ -9,7 +12,7 @@ export const ErrorPage = () => {
     <div className='flex flex-col items-center gap-4 mt-10'>
       <img
         className=''
-        src="/images/icon-error.svg"
+        src={errorIcon}
         alt="error image"
         width="50"
         height="50"
@@ -20,7 +23,7 @@ export const ErrorPage = () => {
       <div className='flex gap-2 sm:flex-col image:flex-row'>
         <Button onClick={() => window.location.reload()}>
           <img
-            src="/images/icon-retry.svg"
+            src={retryIcon}
             alt="retry button"
             width="15"
             height="15"

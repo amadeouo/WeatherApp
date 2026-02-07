@@ -1,3 +1,12 @@
+import sunny from "@/app/assets/images/icon-sunny.webp";
+import partlyCloudy from "@/app/assets/images/icon-partly-cloudy.webp";
+import overcast from "@/app/assets/images/icon-overcast.webp";
+import fog from "@/app/assets/images/icon-fog.webp";
+import drizzle from "@/app/assets/images/icon-drizzle.webp";
+import rain from "@/app/assets/images/icon-rain.webp";
+import snow from "@/app/assets/images/icon-snow.webp";
+import storm from "@/app/assets/images/icon-storm.webp";
+
 // 0	Clear sky
 // 1, 2, 3	Mainly clear, partly cloudy, and overcast
 // 45, 48	Fog and depositing rime fog
@@ -12,14 +21,14 @@
 // 95 *	Thunderstorm: Slight or moderate
 // 96, 99 *	Thunderstorm with slight and heavy hail
 const WEATHER_CODE_CONFIG = new Map([
-  ["/images/icon-sunny.webp", [0]],
-  ["/images/icon-partly-cloudy.webp", [1, 2]],
-  ["/images/icon-overcast.webp", [3]],
-  ["/images/icon-fog.webp", [45, 48]],
-  ["/images/icon-drizzle.webp", [51, 53, 55, 56, 57]],
-  ["/images/icon-rain.webp", [61, 63, 65, 66, 67, 80, 81, 82]],
-  ["/images/icon-snow.webp", [71, 73, 75, 77, 85, 86]],
-  ["/images/icon-storm.webp", [95, 96, 99]],
+  [sunny, [0]],
+  [partlyCloudy, [1, 2]],
+  [overcast, [3]],
+  [fog, [45, 48]],
+  [drizzle, [51, 53, 55, 56, 57]],
+  [rain, [61, 63, 65, 66, 67, 80, 81, 82]],
+  [snow, [71, 73, 75, 77, 85, 86]],
+  [storm, [95, 96, 99]],
 ])
 
 export const weatherCodeLink = (weatherCode: number | undefined): string => {

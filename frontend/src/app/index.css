@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: 'Bricolage Grotesque';
-  src: url('../../public/fonts/Bricolage_Grotesque/BricolageGrotesque-Bold.woff2') format('woff2');
+  src: url('assets/fonts/Bricolage_Grotesque/BricolageGrotesque-Bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -78,6 +78,8 @@ body {
   --font-body: 'Bricolage Grotesque', sans-serif;
   --font-serif: 'Bricolage Grotesque', sans-serif;
   --font-mono: 'Bricolage Grotesque', sans-serif;
+
+  --bg-today-large: url('assets/images/bg-today-large.svg');
 }
 
 :root {

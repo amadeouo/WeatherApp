@@ -36,8 +36,9 @@ export const useSearchStore = create<SearchStore>((set) => ({
       }, [])
       set({ items: items })
 
-    } catch (e: any) {
-      set({ error: e.message })
+    } catch (e) {
+      const error = e as Error
+      set({ error: error.message })
     } finally {
       set({ isLoading: false })
     }

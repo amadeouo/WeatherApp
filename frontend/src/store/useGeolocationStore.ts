@@ -51,8 +51,9 @@ export const useGeolocationStore = create<GeolocationStore>((set, get) => ( {
           latitude: userLocation.latitude
         }
         set({ items: item })
-      } catch (e: any) {
-        set({ error: e.message })
+      } catch (e) {
+        const error = e as Error
+        set({ error: error.message })
       } finally {
         set({ isLoading: false })
       }

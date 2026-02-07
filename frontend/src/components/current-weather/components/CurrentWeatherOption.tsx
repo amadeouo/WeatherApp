@@ -1,18 +1,22 @@
 type Props = {
   label: string,
-  data: string | number
+  data: string | number,
+  isLoading?: boolean,
 }
-export const CurrentWeatherOption = ({ label, data }: Props) => {
+export const CurrentWeatherOption = ({ label, data, isLoading }: Props) => {
   return (
     <div
-      className='
+      className={
+        `
         flex flex-col bg-neutral-700 p-6 rounded-xl gap-3
         sm:p-3 sm:gap-1 sm:rounded-md
         md:gap-3.5
-      '
+        ${isLoading && 'animate-pulse'}
+      `
+      }
     >
       <p className='text-zinc-400 sm:text-sm md:text-base'>{label}</p>
-      <p className='text-3xl sm:text-sm md:text-2xl'>{data}</p>
+      <p className='text-3xl sm:text-sm md:text-2xl'>{isLoading ? "-" : data}</p>
     </div>
   )
 }

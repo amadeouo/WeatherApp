@@ -20,6 +20,9 @@ import { weatherAlt, weatherCodeLink } from "@/utils/weatherCode.ts";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { formatTemperature } from "@/utils/formatTemperature.ts";
 import { useUnitsStore } from "@/store/useUnitsStore.ts";
+import {
+  HourlyWeatherSkeleton
+} from "@/components/hourly-weather/components/HourlyWeatherSkeleton.tsx";
 
 export const HourlyWeather = () => {
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
@@ -27,13 +30,15 @@ export const HourlyWeather = () => {
   const { itemFromLocalStorage } = useLocalStorageContext()
   const {
     hourlyForecast,
-    getHourlyForecast
+    getHourlyForecast,
+    isLoading,
   } = useWeatherStore(useShallow(state => ( {
     hourlyForecast: state.hourlyForecast,
     getHourlyForecast: state.getHourlyForecast,
+    isLoading: state.isLoading,
   } )))
-  const temperature = useUnitsStore(state => state.temperature)
 
+  const temperature = useUnitsStore(state => state.temperature)
   const hourlyData = useHourlyData(hourlyForecast, day);
 
   useEffect(() => {
@@ -80,9 +85,12 @@ export const HourlyWeather = () => {
         <div className='mt-4'>
           <ScrollArea className='flex flex-col max-h-[calc(100vh-270px-16px)]'>
             <div className='flex flex-col gap-3'>
-              {hourlyData.length > 7
-                ? (
-                  hourlyData.map((item, index) => {
+              {(isLoading || hourlyData.length === 0)
+                ? Array.from({length: 23}).map((_, i) => (
+                  <HourlyWeatherSkeleton key={i} />
+                ))
+                : (hourlyData.length > 7 && hourlyData.length !== 0)
+                  ? hourlyData.map((item, index) => {
                     const weatherCodeLinkSrc = weatherCodeLink(item.weatherCode)
                     return (
                       <HourlyWeatherOption
@@ -95,9 +103,9 @@ export const HourlyWeather = () => {
                         weatherCodeLink={weatherCodeLink(item.weatherCode)}
                         weatherCodeAlt={weatherAlt(weatherCodeLinkSrc)}
                       />
-                  )})
-                )
-                : (<span className='p-2 text-center'>Weather on this day is not available</span>)
+                    )}
+                  )
+                  : (<span className='p-2 text-center'>Weather on this day is not available</span>)
               }
             </div>
           </ScrollArea>

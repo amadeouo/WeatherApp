@@ -106,7 +106,7 @@ export const HourlyWeather = () => {
           </Select>
         </div>
         <div className='mt-4'>
-          <ScrollArea className='flex flex-col max-h-[calc(100vh-270px-16px)]'>
+          <ScrollArea className='flex flex-col max-h-[calc(100vh-328px)]'>
             <div className='flex flex-col gap-3'>
               {/* Элемент часовой погоды */}
               {(isLoading || hourlyData.length === 0)

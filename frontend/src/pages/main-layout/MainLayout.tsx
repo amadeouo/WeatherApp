@@ -4,19 +4,36 @@ import { Hero } from "@/widgets/hero/Hero.tsx";
 import { useEffect } from "react";
 import { useGeolocationStore } from "@/store/useGeolocationStore.ts";
 import useLocalStorageContext from "@/utils/hooks/useLocalStorageContext.ts";
+import { useShallow } from "zustand/react/shallow";
 
 export const MainLayout = () => {
-  const getLocation = useGeolocationStore(state => state.getLocation)
-  const {itemFromLocalStorage} = useLocalStorageContext()
+  const {items, setItemsFromLocation} = useGeolocationStore(useShallow(state => ({
+    items: state.items,
+    setItemsFromLocation: state.setItemsFromLocation,
+    isLoading: state.isLoading,
+    error: state.error,
+  })))
+  const {itemFromLocalStorage, setItemFromLocalStorage} = useLocalStorageContext()
   const navigate = useNavigate()
   const location = useLocation().pathname
 
   useEffect(() => {
-    getLocation()
     if (itemFromLocalStorage.name && location === '/') {
       navigate(`/${itemFromLocalStorage.name.toLowerCase()}`)
+      return
     }
-  }, [getLocation, navigate, itemFromLocalStorage.name])
+    setItemsFromLocation()
+    if (location === '/' && !items.name) {
+      setItemsFromLocation();
+    }
+  }, [setItemsFromLocation, navigate, itemFromLocalStorage.name, location, items])
+
+  useEffect(() => {
+    if (items.name) {
+      navigate(`/${items.name.toLowerCase()}`);
+    }
+    setItemFromLocalStorage(items)
+  }, [items, navigate, setItemFromLocalStorage])
 
   return (
     <div className='flex justify-center h-full px-20 sm:px-4 py-4 md:px-15 lg:px-20 text-white'>

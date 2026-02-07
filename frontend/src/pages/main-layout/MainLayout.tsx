@@ -18,22 +18,25 @@ export const MainLayout = () => {
   const location = useLocation().pathname
 
   useEffect(() => {
-    if (itemFromLocalStorage.name && location === '/') {
-      navigate(`/${itemFromLocalStorage.name.toLowerCase()}`)
-      return
+    // Если мы на главной странице
+    if (location === '/') {
+      // Если есть сохраненный город в localStorage, переходим на него
+      if (itemFromLocalStorage.name) {
+        navigate(`/${itemFromLocalStorage.name.toLowerCase()}`);
+      } else {
+        // Иначе пытаемся определить местоположение
+        setItemsFromLocation();
+      }
     }
-    setItemsFromLocation()
-    if (location === '/' && !items.name) {
-      setItemsFromLocation();
-    }
-  }, [setItemsFromLocation, navigate, itemFromLocalStorage.name, location, items])
+  }, [location, itemFromLocalStorage.name, navigate, setItemsFromLocation]);
 
   useEffect(() => {
-    if (items.name) {
+    // Если геолокация определила город и мы все еще на главной (или если это новый город)
+    if (items.name && location === '/') {
       navigate(`/${items.name.toLowerCase()}`);
+      setItemFromLocalStorage(items);
     }
-    setItemFromLocalStorage(items)
-  }, [items, navigate, setItemFromLocalStorage])
+  }, [items, location, navigate, setItemFromLocalStorage]);
 
   return (
     <div className='flex justify-center h-full px-20 sm:px-4 py-4 md:px-15 lg:px-20 text-white'>
